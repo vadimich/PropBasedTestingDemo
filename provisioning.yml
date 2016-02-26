@@ -18,6 +18,10 @@
       sudo: yes
       apt: pkg=git force=yes
 
+    - name: Update npm
+      sudo: no
+      command: npm update all
+
     - name: Installing gulp
       sudo: yes
       npm: name=gulp global=yes
