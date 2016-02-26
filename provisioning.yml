@@ -36,5 +36,5 @@
 
     - name: Update npm
       sudo: no
-      command: npm install
+      command: npm install chdir=~/proj
 
