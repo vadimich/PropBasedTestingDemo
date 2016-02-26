@@ -18,10 +18,6 @@
       sudo: yes
       apt: pkg=git force=yes
 
-    - name: Update npm
-      sudo: no
-      command: npm update all
-
     - name: Installing gulp
       sudo: yes
       npm: name=gulp global=yes
@@ -37,4 +33,8 @@
     - name: Installing jsVerify
       sudo: yes
       npm: name=jsverify global=yes
+
+    - name: Update npm
+      sudo: no
+      command: npm install
 
