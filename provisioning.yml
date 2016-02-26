@@ -1,0 +1,36 @@
+---
+- hosts: all
+
+  tasks:
+    - name: update node PPA repo
+      sudo: yes
+      shell: curl -sL https://deb.nodesource.com/setup_4.x | sudo bash -
+  
+    - name: Install nodejs
+      sudo: yes
+      apt: pkg=nodejs force=yes
+
+    - name: Install build-essential
+      sudo: yes
+      apt: pkg=build-essential force=yes
+
+    - name: Installing git
+      sudo: yes
+      apt: pkg=git force=yes
+
+    - name: Installing gulp
+      sudo: yes
+      npm: name=gulp global=yes
+
+    - name: Installing slush scaffolding system
+      sudo: yes
+      npm: name=slush global=yes
+
+    - name: Installing slush-js-skeleton
+      sudo: yes
+      npm: name=slush-js-skeleton global=yes
+
+    - name: Installing jsVerify
+      sudo: yes
+      npm: name=jsverify global=yes
+
