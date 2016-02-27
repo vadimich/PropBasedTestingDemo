@@ -28,6 +28,13 @@
       args:
         creates: /home/vagrant/.spf13-vim-3/.vimrc
 
+    - name: Installing tmux
+      sudo: yes
+      apt: pkg=tmux force=yes
+
+    - name: Get my config for tmux
+      get_url: url=https://dl.dropboxusercontent.com/u/27226292/dot_files/tmux.conf dest=~/.tmux.conf
+
     - name: Installing gulp
       sudo: yes
       npm: name=gulp global=yes
