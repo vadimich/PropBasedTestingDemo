@@ -18,6 +18,16 @@
       sudo: yes
       apt: pkg=git force=yes
 
+    - name: Installing vim
+      sudo: yes
+      apt: pkg=vim force=yes
+
+    - name: Install Ultimate vim config
+      sudo: no
+      shell: curl http://j.mp/spf13-vim3 -L -o - | sh
+      args:
+        creates: /home/vagrant/.spf13-vim-3/.vimrc
+
     - name: Installing gulp
       sudo: yes
       npm: name=gulp global=yes
