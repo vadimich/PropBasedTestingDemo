@@ -51,6 +51,10 @@
       sudo: yes
       npm: name=jsverify global=yes
 
+    - name: Installing Ramda
+      sudo: yes
+      npm: name=ramda global=yes
+
     - name: Update npm
       sudo: no
       command: npm install chdir=~/proj
