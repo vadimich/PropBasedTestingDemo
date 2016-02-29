@@ -7,23 +7,27 @@
 
 // var expect = require('chai').expect;
 var jsc = require('jsverify');
+var R = require('ramda');
+var options = { tests: 100, quiet: false };
 // var lib = process.env.JSCOV ? require('../lib-cov/propertytesting') : require('../lib/propertytesting');
 
-describe('natural numbers', function () {
-  jsc.property('are greater or equal to zero', jsc.nat(999999), function (n) {
-    return n >= 0;
+var alphoOnly = function (c) {
+  var num = c.charCodeAt();
+  return (num >= 65 && num <= 90) || (num >= 97 && num <= 122);
+};
+
+describe('Alpha range regex', function () {
+  it('should pass all alphas', function () {
+    var property = jsc.forall(jsc.suchthat('asciichar', function (c) { return alphoOnly(c); }), function (n) {
+      return /[A-z]/.test(n);
+    });
+    jsc.assert(property, options);
   });
-
-  // jsc.property('added together result is larger than or equal to one of the nats', 'nat', 'nat', function (n1, n2) {
-  //   var sum = n1 + n2;
-  //   return sum >= n1 || sum >= n2;
-  // });
-
-  var maxequal = jsc.forall(jsc.number(100), jsc.number(100), function (n1, n2) {
-    var max = Math.max(n1, n2);
-    return max === n1 || max === n2;
+  it('should fail all non alphas', function () {
+    var property = jsc.forall(jsc.suchthat('asciichar', function (c) { return !alphoOnly(c) && !R.contains(c)(['[','\\',']','^','_','`']); }), function (n) {
+      return !/[A-z]/.test(n);
+    });
+    jsc.assert(property, options);
   });
-
-  jsc.check(maxequal);
 });
 
