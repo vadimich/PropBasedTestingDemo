@@ -1,0 +1,15 @@
+" This adds additional plugins and configs to vim
+
+Bundle 'rking/ag.vim'
+Bundle 'Chun-Yang/vim-action-ag'
+
+" Silver Searcher and Gag {{{
+
+" use * to search current word in normal mode
+nmap * <Plug>AgActionWord
+" use * to search selected text in visual mode
+vmap * <Plug>AgActionVisual
+
+" }}}
+
+

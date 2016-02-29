@@ -46,6 +46,7 @@ Vagrant.configure(2) do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   config.vm.synced_folder "./proj", "/home/vagrant/proj", type: "nfs"
+  config.vm.synced_folder "./provision", "/home/vagrant/provision", type: "nfs"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -71,6 +72,6 @@ Vagrant.configure(2) do |config|
 
   config.vm.provision "shell", inline: $ansible_install
   config.vm.provision "ansible_local" do |ansible|
-    ansible.playbook = "provisioning.yml"
+    ansible.playbook = "provision/provisioning.yml"
   end 
 end
