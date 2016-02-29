@@ -35,7 +35,9 @@
     - copy: src=~/.vimrc dest=~/.vimrc.before_update
     - shell: cat ~/provision/vimupdate >> ~/.vimrc
       args:
-        creates: ~/.vimrc.before_update
+        creates: ~/.vimrc.after_update
+
+    - copy: src=~/.vimrc dest=~/.vimrc.after_update
 
     - name: Installing tmux
       sudo: yes
