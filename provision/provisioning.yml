@@ -32,6 +32,11 @@
       sudo: yes
       apt: pkg=silversearcher-ag force=yes
 
+    - copy: src=~/.vimrc dest=~/.vimrc.before_update
+    - shell: cat ~/provision/vimupdate >> ~/.vimrc
+      args:
+        creates: ~/.vimrc.before_update
+
     - name: Installing tmux
       sudo: yes
       apt: pkg=tmux force=yes
